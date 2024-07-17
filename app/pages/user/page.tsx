@@ -18,7 +18,12 @@ interface UserData {
 
 const Page = () => {
   const [userData, setUserData] = useState<UserData | null>(null);
-  const userId = localStorage.getItem("userId");
+  const [userId, setUserId] = useState<string | null>(null);
+  useEffect(() => {
+    const storedUserId =
+      typeof window !== "undefined" ? localStorage.getItem("userId") : null;
+    setUserId(storedUserId);
+  }, []);
 
   // Function to fetch user data from Firestore
   const fetchUserData = async (userId: string): Promise<UserData | null> => {
