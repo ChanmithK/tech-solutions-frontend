@@ -43,7 +43,7 @@ const Login = () => {
     const addressCollectionRef = collection(userDocRef, "addresses");
     await setDoc(doc(addressCollectionRef), {
       address: address,
-    });
+    }).then(() => router.push("/pages/user"));
   };
 
   // Function to login existing user
